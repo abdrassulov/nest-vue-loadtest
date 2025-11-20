@@ -10,16 +10,15 @@ export class ItemsService {
     private readonly repo: Repository<Item>,
   ) {}
 
-  // Получить все элементы с поддержкой пагинации
   findAll(limit = 100, offset = 0): Promise<Item[]> {
     return this.repo.find({
       take: limit,
       skip: offset,
-      order: { id: 'ASC' }, // чтобы результаты были упорядочены
+      order: { id: 'ASC' }, 
     });
   }
 
-  // Получить один элемент по id
+  
   async findOne(id: number): Promise<Item> {
     const item = await this.repo.findOneBy({ id });
     if (!item) {
@@ -28,13 +27,13 @@ export class ItemsService {
     return item;
   }
 
-  // Создать новый элемент
+ 
   create(itemData: Partial<Item>): Promise<Item> {
     const item = this.repo.create(itemData);
     return this.repo.save(item);
   }
 
-  // Обновить элемент
+ 
   async update(id: number, itemData: Partial<Item>): Promise<Item> {
     await this.repo.update(id, itemData);
     const updatedItem = await this.repo.findOneBy({ id });
@@ -44,7 +43,7 @@ export class ItemsService {
     return updatedItem;
   }
 
-  // Удалить элемент
+
   async remove(id: number): Promise<void> {
     const result = await this.repo.delete(id);
     if (result.affected === 0) {
