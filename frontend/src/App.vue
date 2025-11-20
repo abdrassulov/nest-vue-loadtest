@@ -67,7 +67,7 @@ export default {
         if (delayMs.value > 0) await sleep(delayMs.value);
       }
 
-      // Ждем, пока все завершатся
+    
       const waitForCompletion = () =>
         new Promise<void>(resolve => {
           const interval = setInterval(() => {
