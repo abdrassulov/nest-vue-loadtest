@@ -6,7 +6,7 @@ import { Item } from './item.entity';
 export class ItemsController {
   constructor(private readonly itemsService: ItemsService) {}
 
-  // GET /items?limit=...&offset=... — список с пагинацией
+
   @Get()
   findAll(
     @Query('limit') limit = '100',
@@ -15,7 +15,7 @@ export class ItemsController {
     return this.itemsService.findAll(Number(limit), Number(offset));
   }
 
-  // GET /items/:id — получить 1 запись
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Item> {
     return this.itemsService.findOne(Number(id));
